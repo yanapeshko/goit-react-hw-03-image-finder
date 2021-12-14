@@ -1,0 +1,20 @@
+import PropTypes from 'prop-types';
+import errorImage from './error.jpg';
+import s from './ImageErrorView.module.css';
+
+export default function ImagesErrorView({ message }) {
+  return (
+    <div role="alert" className={s.loader}>
+      <img src={errorImage} alt="Error" />
+      <p>{message}</p>
+    </div>
+  );
+}
+
+ImagesErrorView.defaultProps = {
+  message: '',
+};
+
+ImagesErrorView.propTypes = {
+  message: PropTypes.string.isRequired,
+};

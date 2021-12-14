@@ -1,0 +1,28 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+  padding: 5px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  font: inherit;
+  color: #fff;
+  background-color: #3f51b5;
+  cursor: pointer;
+  box-shadow: 1px 2px 2px 0 rgb(0 0 0 / 0.5);
+  transition: box-shadow 250ms linear;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #303f9f;
+  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.btn:active {
+  box-shadow: 2px 5px 2px 0 rgb(0 0 0 / 0.5);
+}
