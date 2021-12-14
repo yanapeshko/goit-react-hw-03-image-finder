@@ -1,8 +1,8 @@
 {
   "name": "goit-react-hw-03-image-finder",
   "version": "0.1.0",
-  "homepage": "https://yanapeshko.github.io/goit-react-hw-03-image-finder/",
   "private": true,
+  "homepage": "https://yanapeshko.github.io/goit-react-hw-03-image-finder/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^11.2.7",
