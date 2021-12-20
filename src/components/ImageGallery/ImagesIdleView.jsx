@@ -1,9 +1,9 @@
-import idleImage from './idle-image.png';
+import pendingImage from './pending-image.png';
 
 export default function ImagesIdleView() {
   return (
     <div role="alert">
-      <img src={idleImage} alt="Pixabay" />
+      <img src={pendingImage} alt="Pixabay" />
     </div>
   );
 }

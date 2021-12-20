@@ -1,5 +1,5 @@
 import Loader from 'react-loader-spinner';
-import s from './ImagePendingView.module.css';
+import s from './ImageGallery.module.css';
 
 export default function ImagesDataView() {
   return (

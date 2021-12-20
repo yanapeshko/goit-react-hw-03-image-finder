@@ -1,10 +1,10 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import fetchArticles from '../../services/apiService';
-import ImagesIdleView from '../ImagesIdleView';
-import ImagesPendingView from '../ImagesPendingView';
-import ImagesErrorView from '../ImagesErrorView';
-import ImagesDataView from '../ImagesDataView';
+import ImagesIdleView from './ImagesIdleView';
+import ImagesPendingView from './ImagesPendingView';
+import ImagesErrorView from './ImagesErrorView';
+import ImagesDataView from './ImagesDataView';
 
 const Status = {
   IDLE: 'idle',
@@ -21,7 +21,7 @@ class ImageGallery extends Component {
     status: Status.IDLE,
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(prevProps, prevState) {
     const prevName = prevProps.imageRequest;
     const prevPage = prevState.page;
     const nextName = this.props.imageRequest;
@@ -39,18 +39,24 @@ class ImageGallery extends Component {
 
     if (prevPage !== nextPage) {
       this.setState({ status: Status.PENDING });
+      try {
+        const images = await fetchArticles(prevName, this.state.page);
 
-      fetchArticles(prevName, this.state.page)
-        .then(images => {
-          this.setState({
-            images: [...prevState.images, ...images],
-            status: Status.RESOLVED,
-          });
-          document
-            .getElementById('btn')
-            .scrollIntoView({ block: 'center', behavior: 'smooth' });
-        })
-        .catch(error => this.setState({ error, status: Status.REJECTED }));
+        this.setState({
+          images: [...prevState.images, ...images],
+          status: Status.RESOLVED,
+        });
+        document
+          .getElementById('btn')
+          .scrollIntoView({ block: 'center', behavior: 'smooth' });
+
+        this.setState({
+          images: [...prevState.images, ...images],
+          status: Status.RESOLVED,
+        });
+      } catch (e) {
+        this.setState({ e, status: Status.REJECTED });
+      }
     }
   }
 
@@ -63,27 +69,20 @@ class ImageGallery extends Component {
   render() {
     const { images, error, status } = this.state;
 
-    if (status === 'idle') {
-      return <ImagesIdleView />;
-    }
-
-    if (status === 'pending') {
-      return <ImagesPendingView />;
-    }
-
-    if (status === 'rejected') {
-      return <ImagesErrorView message={error.message} />;
-    }
-
-    if (status === 'resolved') {
-      return (
-        <ImagesDataView
-          images={images}
-          toClick={this.props.toClick}
-          forClick={this.addImages}
-        />
-      );
-    }
+    return (
+      <>
+        {status === 'idle' && <ImagesIdleView />}
+        {status === 'rejected' && <ImagesErrorView message={error.message} />}
+        {status === 'pending' && <ImagesPendingView />}
+        {status === 'resolved' && (
+          <ImagesDataView
+            images={images}
+            toClick={this.props.toClick}
+            forClick={this.addImages}
+          />
+        )}
+      </>
+    );
   }
 }
 

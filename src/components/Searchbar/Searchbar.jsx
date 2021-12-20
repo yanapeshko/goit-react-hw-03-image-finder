@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import SearchForm from '../SearchForm';
+import SearchForm from '../SearchForm/SearchForm';
 import s from './Searchbar.module.css';
 
 export default function Searchbar({ forSubmit }) {

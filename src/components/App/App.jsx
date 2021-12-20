@@ -5,7 +5,7 @@ import ImageGallery from '../ImageGallery';
 import Modal from '../Modal';
 import IconButton from '../IconButton';
 import { ReactComponent as CloseIcon } from '../IconButton/cross.svg';
-import './App.module.css';
+import './App.css';
 
 class App extends Component {
   state = {
