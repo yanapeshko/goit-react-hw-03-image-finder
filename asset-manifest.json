@@ -1,27 +1,23 @@
 {
   "files": {
-    "main.css": "/goit-react-hw-03-image-finder/static/css/main.9bcbeaea.chunk.css",
-    "main.js": "/goit-react-hw-03-image-finder/static/js/main.7c7a278d.chunk.js",
-    "main.js.map": "/goit-react-hw-03-image-finder/static/js/main.7c7a278d.chunk.js.map",
+    "main.css": "/goit-react-hw-03-image-finder/static/css/main.407f5046.chunk.css",
+    "main.js": "/goit-react-hw-03-image-finder/static/js/main.e15b4ab5.chunk.js",
+    "main.js.map": "/goit-react-hw-03-image-finder/static/js/main.e15b4ab5.chunk.js.map",
     "runtime-main.js": "/goit-react-hw-03-image-finder/static/js/runtime-main.2541e481.js",
     "runtime-main.js.map": "/goit-react-hw-03-image-finder/static/js/runtime-main.2541e481.js.map",
-    "static/css/2.3f4a0cdf.chunk.css": "/goit-react-hw-03-image-finder/static/css/2.3f4a0cdf.chunk.css",
-    "static/js/2.2d0b09f9.chunk.js": "/goit-react-hw-03-image-finder/static/js/2.2d0b09f9.chunk.js",
-    "static/js/2.2d0b09f9.chunk.js.map": "/goit-react-hw-03-image-finder/static/js/2.2d0b09f9.chunk.js.map",
+    "static/css/2.f4c56af9.chunk.css": "/goit-react-hw-03-image-finder/static/css/2.f4c56af9.chunk.css",
+    "static/js/2.e14830d8.chunk.js": "/goit-react-hw-03-image-finder/static/js/2.e14830d8.chunk.js",
+    "static/js/2.e14830d8.chunk.js.map": "/goit-react-hw-03-image-finder/static/js/2.e14830d8.chunk.js.map",
     "index.html": "/goit-react-hw-03-image-finder/index.html",
-    "static/css/2.3f4a0cdf.chunk.css.map": "/goit-react-hw-03-image-finder/static/css/2.3f4a0cdf.chunk.css.map",
-    "static/css/main.9bcbeaea.chunk.css.map": "/goit-react-hw-03-image-finder/static/css/main.9bcbeaea.chunk.css.map",
-    "static/js/2.2d0b09f9.chunk.js.LICENSE.txt": "/goit-react-hw-03-image-finder/static/js/2.2d0b09f9.chunk.js.LICENSE.txt",
-    "static/media/cross.5034ac69.svg": "/goit-react-hw-03-image-finder/static/media/cross.5034ac69.svg",
-    "static/media/error.eaab311d.png": "/goit-react-hw-03-image-finder/static/media/error.eaab311d.png",
-    "static/media/pending-image.191574ae.png": "/goit-react-hw-03-image-finder/static/media/pending-image.191574ae.png",
-    "static/media/SearchForm.module.css": "/goit-react-hw-03-image-finder/static/media/search.6ac6b6bc.svg"
+    "static/css/2.f4c56af9.chunk.css.map": "/goit-react-hw-03-image-finder/static/css/2.f4c56af9.chunk.css.map",
+    "static/css/main.407f5046.chunk.css.map": "/goit-react-hw-03-image-finder/static/css/main.407f5046.chunk.css.map",
+    "static/js/2.e14830d8.chunk.js.LICENSE.txt": "/goit-react-hw-03-image-finder/static/js/2.e14830d8.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2541e481.js",
-    "static/css/2.3f4a0cdf.chunk.css",
-    "static/js/2.2d0b09f9.chunk.js",
-    "static/css/main.9bcbeaea.chunk.css",
-    "static/js/main.7c7a278d.chunk.js"
+    "static/css/2.f4c56af9.chunk.css",
+    "static/js/2.e14830d8.chunk.js",
+    "static/css/main.407f5046.chunk.css",
+    "static/js/main.e15b4ab5.chunk.js"
   ]
 }
