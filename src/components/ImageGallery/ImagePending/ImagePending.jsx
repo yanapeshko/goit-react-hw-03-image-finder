@@ -8,7 +8,7 @@ export default class ImagePending extends Component {
       <Loader
         className={s.loader}
         type="Puff"
-        color="#3f51b5"
+        color="#47acce"
         height={500}
         width={500}
         timeout={3000}
