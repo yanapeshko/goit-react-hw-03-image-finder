@@ -1,61 +1,48 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
-import Searchbar from '../Searchbar';
 import ImageGallery from '../ImageGallery';
 import Modal from '../Modal';
-import IconButton from '../IconButton';
-import { ReactComponent as CloseIcon } from '../IconButton/cross.svg';
-import './App.css';
+import Searchbar from '../Searchbar';
+import Section from '../Section';
 
-class App extends Component {
+export default class App extends Component {
   state = {
-    imageRequest: '',
-    largeImage: '',
+    imageName: '',
     showModal: false,
+    modalImg: {
+      src: '',
+      alt: '',
+    },
   };
 
-  handleFormSubmit = imageRequest => {
-    this.setState({ imageRequest });
+  onFormSubmit = imageName => {
+    this.setState({ imageName });
   };
 
-  setTarget = largeImage => {
-    this.setState({ largeImage, showModal: true });
-  };
-
-  toggleModal = () => {
+  toggleModal = (src, alt) => {
     this.setState(({ showModal }) => ({
       showModal: !showModal,
+      modalImg: {
+        src,
+        alt,
+      },
     }));
   };
 
   render() {
-    const { largeImage, showModal } = this.state;
-    const toggleModal = this.toggleModal;
-    const setTarget = this.setTarget;
-
+    const { imageName, showModal, modalImg } = this.state;
     return (
       <>
-        <Searchbar forSubmit={this.handleFormSubmit} />
-        <ImageGallery
-          imageRequest={this.state.imageRequest}
-          toClick={setTarget}
-        />
-        <ToastContainer />
-        {showModal && (
-          <Modal forClose={toggleModal}>
-            <img src={largeImage} alt={largeImage} />
-            <IconButton
-              type="button"
-              aria-label="Добавить заметку"
-              onClick={toggleModal}
-            >
-              <CloseIcon fill="#fff" />
-            </IconButton>
-          </Modal>
-        )}
+        <Section>
+          <Searchbar onSubmit={this.onFormSubmit} />
+        </Section>
+        <Section>
+          <ImageGallery imageName={imageName} openModal={this.toggleModal} />
+        </Section>
+
+        {showModal && <Modal onClose={this.toggleModal} modalImg={modalImg} />}
+        <ToastContainer autoClose={2000} />
       </>
     );
   }
 }
-
-export default App;

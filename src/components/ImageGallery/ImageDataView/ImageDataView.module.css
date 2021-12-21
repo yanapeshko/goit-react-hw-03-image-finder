@@ -1,0 +1,22 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.gallery {
+  display: grid;
+  max-width: 100%;
+  grid-template-columns: auto auto auto auto;
+  grid-auto-flow: dense;
+  grid-gap: 15px;
+  padding: 0;
+}
+.galleryItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  cursor: pointer;
+}

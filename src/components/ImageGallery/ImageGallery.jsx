@@ -1,10 +1,10 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import fetchArticles from '../../services/apiService';
-import ImagesIdleView from './ImagesIdleView';
-import ImagesPendingView from './ImagesPendingView';
-import ImagesErrorView from './ImagesErrorView';
-import ImagesDataView from './ImagesDataView';
+import { toast } from 'react-toastify';
+import ImageDataView from './ImageDataView';
+import ImagePending from './ImagePending';
+import { fetchArticles } from '../../services/serviceApi';
+import s from './ImageGallery.module.css';
 
 const Status = {
   IDLE: 'idle',
@@ -13,82 +13,82 @@ const Status = {
   REJECTED: 'rejected',
 };
 
-class ImageGallery extends Component {
+export default class ImageGallery extends Component {
   state = {
-    images: [],
+    imagesArray: [],
     page: 1,
-    error: null,
     status: Status.IDLE,
   };
 
-  async componentDidUpdate(prevProps, prevState) {
-    const prevName = prevProps.imageRequest;
+  componentDidUpdate(prevProps, prevState) {
+    const prevName = prevProps.imageName;
+    const nextName = this.props.imageName;
     const prevPage = prevState.page;
-    const nextName = this.props.imageRequest;
     const nextPage = this.state.page;
 
     if (prevName !== nextName) {
-      this.setState({ images: [], page: 1, status: Status.PENDING });
-
-      setTimeout(() => {
-        fetchArticles(nextName, this.state.page)
-          .then(images => this.setState({ images, status: Status.RESOLVED }))
-          .catch(error => this.setState({ error, status: Status.REJECTED }));
-      }, 0);
+      this.setState({ imagesArray: [] });
     }
 
-    if (prevPage !== nextPage) {
+    if (prevName !== nextName || prevPage !== nextPage) {
       this.setState({ status: Status.PENDING });
-      try {
-        const images = await fetchArticles(prevName, this.state.page);
 
-        this.setState({
-          images: [...prevState.images, ...images],
-          status: Status.RESOLVED,
-        });
-        document
-          .getElementById('btn')
-          .scrollIntoView({ block: 'center', behavior: 'smooth' });
+      fetchArticles(nextName, nextPage).then(
+        ({ hits: newImagesArray, totalHits: totalImages }) => {
+          if (newImagesArray.length === 0 && totalImages === 0) {
+            toast.error('Nothing found');
+            return;
+          }
+          if (newImagesArray.length === 0 && totalImages !== 0) {
+            toast.warning('Nothing more found');
+            return;
+          }
+          if (nextPage === 1) {
+            toast.success(`Found ${totalImages} images`);
+          }
 
-        this.setState({
-          images: [...prevState.images, ...images],
-          status: Status.RESOLVED,
-        });
-      } catch (e) {
-        this.setState({ e, status: Status.REJECTED });
-      }
+          this.setState(({ imagesArray }) => ({
+            imagesArray: [...imagesArray, ...newImagesArray],
+            status: Status.RESOLVED,
+          }));
+        },
+      );
     }
   }
 
-  addImages = () => {
-    this.setState(prevState => ({
-      page: prevState.page + 1,
-    }));
+  updatePage = () => {
+    this.setState(prevState => {
+      return { page: prevState.page + 1 };
+    });
   };
 
   render() {
-    const { images, error, status } = this.state;
+    const { imagesArray, status } = this.state;
+    const { openModal } = this.props;
 
     return (
       <>
-        {status === 'idle' && <ImagesIdleView />}
-        {status === 'rejected' && <ImagesErrorView message={error.message} />}
-        {status === 'pending' && <ImagesPendingView />}
-        {status === 'resolved' && (
-          <ImagesDataView
-            images={images}
-            toClick={this.props.toClick}
-            forClick={this.addImages}
+        {status === 'idle' && (
+          <h2 className={s.enterData}>Enter data to search...</h2>
+        )}
+
+        {status === 'pending' && <ImagePending />}
+
+        {(status === 'resolved' || status === 'pending') && (
+          <ImageDataView
+            imagesArray={imagesArray}
+            openModal={openModal}
+            loadMore={this.updatePage}
           />
         )}
+
+        {status === 'rejected' && toast.error('Ooops')}
       </>
     );
   }
 }
 
 ImageGallery.propTypes = {
-  imageRequest: PropTypes.string.isRequired,
-  toClick: PropTypes.func.isRequired,
+  imageName: PropTypes.string.isRequired,
+  openModal: PropTypes.func.isRequired,
 };
-
-export default ImageGallery;
