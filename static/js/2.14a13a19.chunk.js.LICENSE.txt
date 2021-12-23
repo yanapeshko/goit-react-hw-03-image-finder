@@ -4,6 +4,11 @@ object-assign
 @license MIT
 */
 
+/**
+ * @author  Milos Janda
+ * @licence MIT
+ */
+
 /** @license React v0.20.2
  * scheduler.production.min.js
  *
