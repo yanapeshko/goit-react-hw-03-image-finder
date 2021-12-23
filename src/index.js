@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'react-toastify/dist/ReactToastify.css';
 import App from './components/App';
+import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
 ReactDOM.render(

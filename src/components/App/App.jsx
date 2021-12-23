@@ -4,6 +4,7 @@ import ImageGallery from '../ImageGallery';
 import Modal from '../Modal';
 import Searchbar from '../Searchbar';
 import Section from '../Section';
+import ScrollUp from '../ScrollUp';
 
 export default class App extends Component {
   state = {
@@ -38,6 +39,7 @@ export default class App extends Component {
         </Section>
         <Section>
           <ImageGallery imageName={imageName} openModal={this.toggleModal} />
+          <ScrollUp />
         </Section>
 
         {showModal && <Modal onClose={this.toggleModal} modalImg={modalImg} />}

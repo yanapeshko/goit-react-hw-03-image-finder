@@ -13,11 +13,11 @@ const getImages = axios.create({
   },
 });
 
-export async function fetchArticles(name, page) {
+export async function fetchArticles(q, page) {
   try {
-    const { data } = await getImages('', { params: { q: name, page } });
+    const { data } = await getImages('', { params: { q, page } });
     return data;
   } catch (error) {
-    toast.error(`No images like ${name}`);
+    toast.error(`No images like ${q}`);
   }
 }
