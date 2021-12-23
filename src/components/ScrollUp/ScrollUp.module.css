@@ -11,7 +11,6 @@
   justify-content: center;
   align-items: center;
   content: '\go up';
-  /* content: '▲'; */
   font-size: 1em;
   position: absolute;
   top: -50%;
@@ -25,6 +24,6 @@
   border-color: inherit;
 }
 .toTop:hover {
-  color: #41aed3;
-  border-color: #41aed3;
+  color: #6fadc0;
+  border-color: #6fadc0;
 }
