@@ -10,16 +10,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  content: '▲';
+  content: '\go up';
+  /* content: '▲'; */
   font-size: 1em;
   position: absolute;
-  top: 0;
+  top: -50%;
   left: 50%;
   margin-left: -0.7em;
   border: solid 0.3em white;
-
-  width: 3.4em;
-  height: 3.4em;
+  border-radius: 8em;
+  width: 3.8em;
+  height: 3.8em;
   line-height: 1.3em;
   border-color: inherit;
 }
